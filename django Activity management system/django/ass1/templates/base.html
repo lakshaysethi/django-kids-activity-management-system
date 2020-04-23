@@ -9,13 +9,47 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 
     <title> title change me </title>
 </head>
+ <style>
 
+ /*
+ 
+html,body{
+background: url('https://cdn.dribbble.com/users/247458/screenshots/2503828/pattern.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+}
+ 
+   */
+</style> 
 <body>
 
+
+
+
+{% if includeNav %}
 {% include 'nav.html' %}
+{% endif %}
+
+
+
+{% if messages %}
+    <div class="messages mt-1">
+        {% for message in messages %}
+            <div 
+            {% if message.tags %} 
+            class="{{ message.tags }}"
+            {% endif %}
+            >
+            {{ message }}
+        
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
 
 
 {% block content1 %}
