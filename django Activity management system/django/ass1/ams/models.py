@@ -20,5 +20,29 @@ class Role(models.Model):
       return self.get_id_display()
 
 
+class Activity(models.Model):
+  name = models.CharField(max_length=255)
+  start_time = models.DateTimeField()
+  end_time = models.DateTimeField()
+
+
+
+class Child(models.Model):
+  name = models.CharField(max_length=50)
+  age = models.IntegerField()
+  date_of_birth = models.DateField()
+  address = models.CharField(max_length=255)
+  contact = models.CharField(max_length=15)
+  enrolled_activities = models.ManyToManyField(Activity,blank=True)
+
+  def __str__(self):
+    return self.name
+
+
 class User(AbstractUser):
   roles = models.ManyToManyField(Role)
+  myChildren = models.ManyToManyField(Child,blank=True)
+
+  def __str__(self):
+    return self.username
+

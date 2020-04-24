@@ -4,6 +4,9 @@ from django.contrib import messages
 from .models import User,Role
 from django.db import IntegrityError
 
+from . import forms
+
+
 def home(request):
     
     return render(request,'home.html',{'includeNav':True})
@@ -15,7 +18,27 @@ def child_profile(request):
 
 
 def my_profile(request):
-    return render(request,'my-profile.html',{'includeNav':True})
+    cf = forms.ChildForm()
+    if request.method == 'POST':
+        cf = forms.ChildForm(request.POST)
+        if cf.is_valid():
+            child = cf.save()
+            request.user.myChildren.add(child)
+            messages.add_message(request, messages.SUCCESS, "Child Added Successfully")
+        else:
+            messages.add_message(request, messages.INFO, "Child Add Failed")
+        
+    
+
+
+
+
+    myChildren = request.user.myChildren.all()
+    
+    context= {'includeNav': True, 'myChildren': myChildren,'form':cf}
+    
+    return render(request, 'my-profile.html',context)
+
 
 def add_activity(request):
     return render(request,'add-activity.html',{'includeNav':True})

@@ -1,0 +1,29 @@
+
+{% load crispy_forms_tags %}
+
+
+<div id="add-child-modal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Add Child</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+                   {{form|crispy}}
+                   <input value ='{{value |stringformat:'s' }}' type="text"  name= 'birthday'>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Add Child</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>

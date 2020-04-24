@@ -3,15 +3,54 @@
 {% block content1 %}
 
 <main>
-    <div class="container">
-        <!-- 
-            update name
-            
+    {% include 'add-child-modal.html' %}
+    <div class="container d-flex flex-column">
+
+        <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i
+                class="fa fa-plus"></i>Add Child</button>
 
 
+        <div class="list-group my-children-list">
+            {% for child in myChildren %}
+            <div class="list-group-item list-group-item-action d-flex flex-column align-items-start">
+                <h5 class="mb-1">{{child.name}}</h5>
+                <p>Address: {{child.address}}</p>
+                <p>Date of birth: {{child.date_of_birth}}</p>
+                <p>Contact: {{child.contact}}</p>
+                <!-- <button class='ml-auto'>Actions <i class="fa fa-caret-down"></i></button> -->
+                
+                <div class="button-group ml-auto">
+                    <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
+                    <div style='background:transparent;border:none;' class="dropdown-menu">
+                        <button class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#updateChildModal"><i class="fas fa-edit"></i> Update</button><br>
+                        <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#removeChildModal"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
 
-         -->
+            </div>
+            {%endfor%}
+
+        </div>
     </div>
+
+
+
+
+
+ <!-- aria-haspopup="true"aria-expanded="false" -->
+    <!-- <div class="btn-group">
+        <button class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"></button>Action <i class="fa fa-caret-down"></i></button>
+        <ul class="dropdown-menu">
+            <li><a type="button" ><i class="glyphicon glyphicon-edit"></i>Edit</a></li>
+            <li><a type="button" data-toggle="modal" data-target="#removeChildModal"><i class="glyphicon glyphicon-trash"></i>Remove</a></li>
+        </ul>
+    </div> -->
+
+
+
+
+
+
 </main>
 
 {% endblock %}
