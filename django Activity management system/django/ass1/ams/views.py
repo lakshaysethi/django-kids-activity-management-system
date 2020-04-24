@@ -19,8 +19,15 @@ def child_profile(request):
 
 def my_profile(request):
     cf = forms.ChildForm()
+    
+    
+  
     if request.method == 'POST':
         cf = forms.ChildForm(request.POST)
+        
+        val =request.POST.get('date_of_birth')
+        
+        print(val)
         if cf.is_valid():
             child = cf.save()
             request.user.myChildren.add(child)
@@ -28,11 +35,6 @@ def my_profile(request):
         else:
             messages.add_message(request, messages.INFO, "Child Add Failed")
         
-    
-
-
-
-
     myChildren = request.user.myChildren.all()
     
     context= {'includeNav': True, 'myChildren': myChildren,'form':cf}

@@ -9,7 +9,7 @@ from ass1 import settings
 
 class DateInput(forms.DateInput):
     input_type = 'date'
-    template_name: 'dateinput.html'
+   
 
     
 
