@@ -5,6 +5,13 @@ from ass1 import settings
 
 
 
+# class ChildUpdateForm(forms.ModelForm):
+#     class Meta:
+#         model = Child
+#         fields = ['name','age','date_of_birth','address','contact']
+#         widgets = {
+#             'date_of_birth': DateInput(),
+#         }
 
 
 class DateInput(forms.DateInput):
@@ -17,10 +24,6 @@ class ChildForm(ModelForm):
      class Meta:
         model = Child
         
-        # date_of_birth = forms.DateField(
-        # widget=forms.DateInput(format='%d-%m-%Y'),
-        # input_formats=('%d-%m-%Y', )
-        # )
         fields = ['name','age','date_of_birth','address','contact']
         
         widgets = {

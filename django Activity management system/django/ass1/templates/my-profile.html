@@ -4,6 +4,8 @@
 
 <main>
     {% include 'add-child-modal.html' %}
+    
+    
     <div class="container d-flex flex-column">
 
         <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i class="fa fa-plus"></i>Add Child</button>
@@ -22,14 +24,13 @@
                     <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
                     <div style='background:transparent;border:none;' class="dropdown-menu">
                         
-                            <button name='childId' value='{{child.id}}' class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#updateChildModal"><i class="fas fa-edit"></i> Update</button><br>
+                            <a class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#update-child-modal-{{ child.id}}"><i class="fas fa-edit"></i> Update</a><br>           
                             {% include 'update-child-modal.html' %}
-                            <form method="post"action="">
-                                {% csrf_token %}
-                                {% include 'remove-child-modal.html' %}
-                                <button class="btn btn-outline-secondary" data-toggle="modal" data-target="#removeChildModal"><i class="fas fa-trash"></i> Remove</button>
-                    
-                            </form>
+                           
+                            <a  class="btn btn-danger" data-toggle="modal" data-target="#removeChildModal-{{child.id}}"><i class="fas fa-trash"></i> Remove</a>
+                            {% include 'remove-child-modal.html' %}
+                            
+                            
                         
                     </div>
                 </div>

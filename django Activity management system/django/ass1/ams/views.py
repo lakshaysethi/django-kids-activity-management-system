@@ -4,7 +4,7 @@ from django.contrib import messages
 from .models import User,Role
 from django.db import IntegrityError
 
-from . import forms
+from ams import forms
 
 
 def home(request):
@@ -19,28 +19,28 @@ def child_profile(request):
 
 def my_profile(request):
     cf = forms.ChildForm()
-    
-    
-  
     if request.method == 'POST':
         cf = forms.ChildForm(request.POST)
-        
-        val =request.POST.get('date_of_birth')
-        
-        print(val)
         if cf.is_valid():
             child = cf.save()
             request.user.myChildren.add(child)
             messages.add_message(request, messages.SUCCESS, "Child Added Successfully")
         else:
             messages.add_message(request, messages.INFO, "Child Add Failed")
-        
     myChildren = request.user.myChildren.all()
-    
     context= {'includeNav': True, 'myChildren': myChildren,'form':cf}
-    
     return render(request, 'my-profile.html',context)
 
+
+def remove_child(request):
+    if request.method == 'POST':
+        childId= request.POST.get('childId')
+        child = request.user.myChildren.filter(id=childId).delete()
+        if child is not None:
+            messages.add_message(request, messages.SUCCESS, "Child Delete Successful")
+        else:
+            messages.add_message(request, messages.INFO, "Child Delete Unsuccessful")
+    return redirect('my-profile')
 
 def add_activity(request):
     return render(request,'add-activity.html',{'includeNav':True})
@@ -94,3 +94,25 @@ def register_view(request):
         messages.add_message(request, messages.INFO, "That Username is taken please try another username")
 
     return render(request,'register.html',{'includeNav':False})
+
+
+
+def updateChild(request):
+    if (not request.user.is_authenticated):
+        return redirect('home')
+    
+    if request.method == 'POST':
+        childId = request.POST.get('childId')
+        child = request.user.myChildren.filter(id=childId).first()
+        cf = forms.ChildForm(request.POST, instance=child)
+        if  cf.is_valid():       
+            cf.save()
+            messages.success(request, f' been Updated Successfully!')
+            return redirect('profile')
+    else:
+        cf = forms.ChildForm(instance=request.user.profile)    
+    
+    
+    context = {'form': cf}
+
+    return render(request,'my-profile.html',context)
