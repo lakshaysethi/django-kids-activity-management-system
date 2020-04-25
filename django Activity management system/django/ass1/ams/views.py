@@ -9,7 +9,11 @@ from ams import forms
 
 def home(request):
     
-    return render(request,'home.html',{'includeNav':True})
+    af = forms.ActivityForm()
+
+    context = {'includeNav':True,'form':af}
+    
+    return render(request,'home.html',context)
 
 
 
@@ -107,10 +111,11 @@ def updateChild(request):
         cf = forms.ChildForm(request.POST, instance=child)
         if  cf.is_valid():       
             cf.save()
-            messages.success(request, f' been Updated Successfully!')
-            return redirect('profile')
+            messages.add_message(request,messages.SUCCESS, f'{child.name}\'s details have been Updated Successfully!')
+            return redirect('my-profile')
     else:
-        cf = forms.ChildForm(instance=request.user.profile)    
+        cf = forms.ChildForm()
+        messages.add_message(request,messages.INFO, 'Failed to update child details.')
     
     
     context = {'form': cf}

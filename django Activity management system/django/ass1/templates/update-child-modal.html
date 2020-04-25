@@ -7,8 +7,10 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-
+            <form method="post" action="{% url 'update-child' %}">
             {% csrf_token %}
+            
+            
             <div class="modal-body">
 
 
@@ -44,7 +46,9 @@
             </div>
 
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Update Child</button>
+                <button name='childId' value='{{child.id}}'   type="submit" class="btn btn-primary">Update Child</button>
+
+            </form>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
 
