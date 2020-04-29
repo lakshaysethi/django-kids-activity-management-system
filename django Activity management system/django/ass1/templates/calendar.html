@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content1 %}
+
+<main>
+
+
+    <h1>Calendar</h1>
+    <div class="container">
+
+        <div class="row">
+            <div class="col">time</div>
+            {% for day in next_five_week_days %}
+            <div class="col">{{day}}</div>
+            {% endfor %}
+        </div>
+        {%  for row in row_wise_data  %}
+        <div class="row">
+            <div class="col">{{row.time}}</div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{row.a1.name}}</h5>
+                        <p>{{row.a1.dur_str}} </p>
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{row.a2.name}}</h5>
+                        <p>{{row.a2.dur_str}} </p>
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{row.a3.name}}</h5>
+                        <p>{{row.a3.dur_str}} </p>
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{row.a4.name}}</h5>
+                        <p>{{row.a4.dur_str}} </p>
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">{{row.a5.name}}</h5>
+                        <p>{{row.a5.dur_str}} </p>
+                        <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                        <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+
+
+
+
+
+    </div>
+
+</main>
+
+
+{% endblock %}

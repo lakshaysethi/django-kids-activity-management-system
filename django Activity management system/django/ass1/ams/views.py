@@ -3,7 +3,8 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
 from .models import User,Role,Activity,Child
 from django.db import IntegrityError
-
+from datetime import datetime,timedelta
+from datetime import time
 from ams import forms
 
 
@@ -157,3 +158,49 @@ def updateChild(request):
     context = {'form': cf}
 
     return render(request,'my-profile.html',context)
+
+
+
+
+
+def calendar(request):
+    # set sratrdate should be from request params but for now chill
+    start_date = datetime.today()
+
+    # set variable to start at start_date
+    day = start_date 
+    
+    # row wise data
+    rwd = []
+
+    five_week_days = []
+    five_week_days_strings =[]
+    
+    
+    # populating the 5 days
+    for number in range(0,5):
+        five_week_days.append(day)
+        day_str = day.strftime('%d-%m-%Y')
+        five_week_days_strings.append(day_str)
+        day += timedelta(days=1)
+    
+    for hour in range(8,22):
+        
+        time_str = f'{hour}:00 - {hour+1}:00'
+        if hour <10:
+            hour =f'0{hour}'
+        else:
+            hour = f'{hour}'
+        start_time_being_checked = time.fromisoformat(hour+':00:00')
+        row = {'time':time_str}
+        for aday in five_week_days:
+            count = 1
+            allActivitiesOnThisDay = Activity.objects.filter(date=aday)
+            for activity in allActivitiesOnThisDay:
+                if activity.start_time == start_time_being_checked:
+                    row[f'a{count}']=activity
+            count +=1
+        rwd.append(row)
+    
+    context = {'row_wise_data':rwd,'next_five_week_days':five_week_days_strings}
+    return render(request,'calendar.html',context)
