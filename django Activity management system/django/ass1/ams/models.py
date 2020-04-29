@@ -30,7 +30,7 @@ def strfdelta(tdelta, fmt):
 class Activity(models.Model):
   name = models.CharField(max_length=255)
   date = models.DateField()
-  start_time = models.TimeField()
+  start_time = models.TimeField(default='08:00')
   duration = models.DurationField(default='01:00:00')
   def dur_str(self):
     return strfdelta(self.duration, "{hours} Hours and {minutes} Minutes")
