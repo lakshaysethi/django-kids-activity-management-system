@@ -27,10 +27,11 @@ class ActivityForm(ModelForm):
     class Meta:
         model = Activity
         
-        fields = ['name','start_time','duration']
+        fields = ['name','date','start_time','duration']
         
         widgets = {
-           'start_time' : DateTimeInput(),
+           'start_time' : forms.TimeInput(),
+           'date' : DateInput(),
            
         }
 
