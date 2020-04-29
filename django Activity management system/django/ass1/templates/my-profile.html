@@ -8,9 +8,12 @@
     
     <div class="container d-flex flex-column">
 
+        <h1>My details</h1>
+        <p>I am a {{user.roles.first}} and my name is {{user.username}}</p>
+        
+        {% if userrole is 2 %}
+        <h1>MY CHILDREN</h1>
         <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i class="fa fa-plus"></i>Add Child</button>
-
-
         <div class="list-group my-children-list">
             {% for child in myChildren %}
             <div class="list-group-item list-group-item-action d-flex flex-column align-items-start">
@@ -21,6 +24,8 @@
                 <!-- <button class='ml-auto'>Actions <i class="fa fa-caret-down"></i></button> -->
                 
                 <div class="button-group ml-auto">
+                    <a class="nav-link" href="{% url 'child-profile' %}">view child profile </a>
+
                     <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
                     <div style='background:transparent;border:none;' class="dropdown-menu">
                         
@@ -39,6 +44,8 @@
             {%endfor%}
 
         </div>
+        {% endif %}
+
     </div>
 
 

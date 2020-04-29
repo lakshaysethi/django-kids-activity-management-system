@@ -8,10 +8,13 @@ from ams import forms
 
 
 def home(request):
-    
+    try:
+        userrole = request.user.roles.first().id
+    except:
+        userrole = '3'
     af = forms.ActivityForm()
 
-    context = {'includeNav':True,'form':af}
+    context = {'userrole':userrole,'includeNav':True,'form':af}
     
     return render(request,'home.html',context)
 
@@ -22,6 +25,10 @@ def child_profile(request):
 
 
 def my_profile(request):
+    try:
+        userrole = request.user.roles.first().id
+    except:
+        userrole = '3'
     cf = forms.ChildForm()
     if request.method == 'POST':
         cf = forms.ChildForm(request.POST)
@@ -32,7 +39,7 @@ def my_profile(request):
         else:
             messages.add_message(request, messages.INFO, "Child Add Failed")
     myChildren = request.user.myChildren.all()
-    context= {'includeNav': True, 'myChildren': myChildren,'form':cf}
+    context= {'userrole':userrole,'includeNav': True, 'myChildren': myChildren,'form':cf}
     return render(request, 'my-profile.html',context)
 
 

@@ -29,10 +29,10 @@ class ActivityForm(ModelForm):
         
         fields = ['name','start_time','end_time']
         
-        # widgets = {
-        #    'start_time' : DateTimeInput(),
-        #    'end_time': DateTimeInput(),
-        # }
+        widgets = {
+           'start_time' : DateTimeInput(),
+           'end_time': DateTimeInput(),
+        }
 
     
 
@@ -40,7 +40,7 @@ class ChildForm(ModelForm):
      class Meta:
         model = Child
         
-        fields = ['name','age','date_of_birth','address','contact']
+        fields = ['name','date_of_birth','address','contact']
         
         widgets = {
             'date_of_birth': DateInput(),

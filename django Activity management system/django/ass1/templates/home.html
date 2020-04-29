@@ -37,10 +37,10 @@
             </div>
 
         </div>
-
+        {% if userrole is 1  %}
         <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-activity-modal"><i class="fa fa-plus"></i>Add Activity</button>
         {% include 'add-activity-modal.html' %}
-
+        {% endif %}
         <style>
             .activity {
                 background-color: #e8e8e8;
@@ -55,44 +55,27 @@
         </style>
 
         <div class="row activities my-3">
-            <div class="col-md-5 my-3 mx-3 activity">
-                <p>soccer </p>
-                <p>time: 12-2:00pm</p>
-                <p>date: 23/04/2020</p>
-                <button class='btn btn-primary float-right'>Enroll my child</button>
+            <div class="row">
+                {%for activity in allActivities%}
+                <div class="col-sm-6">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Activity: {{activity.name}}</h5>
+    
+                            <p class=""> {{activity.name}} </p>
+                            <p>From: {{activity.start_time}} </p>
+                            <p>To: {{activity.end_time}} </p>
+                            <button class="btn btn-primary float-right">Enroll My Child</button>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
             </div>
-            <div class="col-md-5 my-3 mx-3 activity">
-                <p>soccer </p>
-                <p>time: 12-2:00pm</p>
-                <p>date: 23/04/2020</p>
-                <button class='btn btn-primary float-right'>Enroll my child</button>
-            </div>
-            <div class="col-md-5 my-3 mx-3 activity">
-                <p>soccer </p>
-                <p>time: 12-2:00pm</p>
-                <p>date: 23/04/2020</p>
-                <button class='btn btn-primary float-right'>Enroll my child</button>
-            </div>
-            <div class="col-md-5 my-3 mx-3 activity">
-                <p>soccer </p>
-                <p>time: 12-2:00pm</p>
-                <p>date: 23/04/2020</p>
-                <button class='btn btn-primary float-right'>Enroll my child</button>
-            </div>
-            <div class="col-md-5 my-3 mx-3 activity">
-                <p>soccer </p>
-                <p>time: 12-2:00pm</p>
-                <p>date: 23/04/2020</p>
-                <button class='btn btn-primary float-right'>Enroll my child</button>
-            </div>
+    
+    
+            
 
         </div>
-
-
-
-
-
-
 
     </div>
 
