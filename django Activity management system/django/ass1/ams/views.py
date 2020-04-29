@@ -29,7 +29,12 @@ def home(request):
 
 
 def child_profile(request):
-    return render(request,'child-profile.html',{'includeNav':True})
+    context ={}
+    if request.method == 'POST':
+        child = request.user.myChildren.all().filter(id=request.POST.get('childId')).first()
+        context = {'includeNav':True,'child':child }
+    
+    return render(request,'child-profile.html',context)
 
 
 def my_profile(request):
