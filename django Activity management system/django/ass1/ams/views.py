@@ -197,7 +197,7 @@ def calendar(request):
         for aday in five_week_days:
             allActivitiesOnThisDay = Activity.objects.filter(date=aday)
             for activity in allActivitiesOnThisDay:
-                if activity.start_time == start_time_being_checked:
+                if activity.start_time.hour == start_time_being_checked.hour:
                     row[f'a{count}']=activity
             count +=1
         rwd.append(row)
