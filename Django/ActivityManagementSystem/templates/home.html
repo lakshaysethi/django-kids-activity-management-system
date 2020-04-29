@@ -15,8 +15,9 @@
 
             </div>
         </div>
+        {%if userrole is 1%}
         <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-activity-modal"><i
-            class="fa fa-plus"></i>Add Activity</button> {%include 'add-activity-modal.html'%}
+            class="fa fa-plus"></i>Add Activity</button> {%include 'add-activity-modal.html'%} {%endif%}
         <style>
             .activity {
                 background-color: #e8e8e8;

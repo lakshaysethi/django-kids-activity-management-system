@@ -9,7 +9,11 @@ from .import forms
 
 
 def child_profile(request):
-    return render(request, 'child-profile.html', {'includeNav': True})
+    if request.method == 'POST':
+        child = request.user.myChildren.all().filter(id=request.POST.get('childId')).first()
+        context = {'includeNav':True, 'child':child}
+        
+    return render(request, 'child-profile.html', context)
 
 
 def add_activity(request):
@@ -39,6 +43,10 @@ def logout_view(request):
 
 
 def my_profile(request):
+    try:
+        userrole = request.user.roles.first().id
+    except:
+        userrole = '3'
     cf = forms.ChildForm()
 
     if request.method == 'POST':
@@ -54,7 +62,7 @@ def my_profile(request):
 
     myChildren = request.user.myChildren.all()
 
-    context = {'includeNav': True, 'myChildren': myChildren, 'form': cf}
+    context = {'userrole':userrole, 'includeNav': True, 'myChildren': myChildren, 'form': cf}
 
     return render(request, 'my-profile.html', context)
 
@@ -118,20 +126,27 @@ def updateChild(request):
     return render(request, 'my-profile.html', context)
 
 def home(request):
+    try:
+        userrole = request.user.roles.first().id
+    except:
+        userrole = '3'
     af = forms.ActivityForm()
     if request.method == 'POST':
         af = forms.ActivityForm(request.POST)
-        
-
         if af.is_valid():
-                activity = af.save()
-                messages.add_message(request, messages.SUCCESS,
-                                    "Activity added successfully")
+            activity = af.save()
+            messages.add_message(request, messages.SUCCESS,
+             "Activity added successfully")
         else:
             messages.add_message(request, messages.INFO,
-                                    "Activity  Failed")
+                "Activity  Failed")
     allActivities = Activity.objects.all()
 
-    context = {'includeNav': True, 'form':af, 'allActivities': allActivities}
+    context = {
+        'userrole': userrole,
+        'includeNav': True,
+        'form': af,
+        'allActivities': allActivities  
+    }
 
     return render(request, 'home.html', context)

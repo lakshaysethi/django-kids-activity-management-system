@@ -9,11 +9,15 @@
 
  
 -->
+
 <main>
     {%include 'add-child-modal.html'%}
 
     <div class="container d-flex flex-column">
-
+        <h1>My details</h1>
+        <p>I am a {{user.roles.first}}and my name is {{user.username}}</p>
+        {%if userrole is 2%}
+        <h1>MY CHILDREN</h1>
         <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i
             class="fa fa-plus"></i>Add Child</button>
 
@@ -28,6 +32,13 @@
                 <p>Date of birth: {{child.date_of_birth}}</p>
                 <p>Contact: {{child.contact}}</p>
                 <div class="button-group ml-auto">
+
+
+                    <form method="post" action="{% url 'child-profile' %}">
+                        {%csrf_token%}
+                        <input name='childId' value="{{child.id}}" type="hidden">
+                        <button type="submit" value="{{child.id}}" class="btn btn-primary float-right" href="">view child profile </button><br/>
+                    </form>
                     <button class="btn btn-secondary " data-toggle="dropdown">Action <i class="fa fa-caret-down"></i>
                     </button>
 
@@ -45,8 +56,9 @@
             {%endfor%}
 
         </div>
+        {%endif%}
     </div>
 
 
 </main>
-{% endblock%}
+{%endblock%}

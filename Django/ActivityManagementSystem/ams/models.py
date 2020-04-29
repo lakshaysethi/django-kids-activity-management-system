@@ -33,7 +33,7 @@ class Activity(models.Model):
 
 class Child(models.Model):
     name = models.CharField(max_length=50)
-    age = models.IntegerField()
+    # age = models.IntegerField()
     date_of_birth = models.DateField()
     address = models.CharField(max_length=255)
     contact = models.CharField(max_length=15)
