@@ -1,5 +1,3 @@
-
-
 {% extends 'base.html' %}
 
 {% block content1 %}
@@ -17,7 +15,7 @@
             <div class="col">
                 <div class="row">
                     <div class="col">
-                        <p style="text-align: center;" > This weeks activities: 22/4/2020 to 29/4/2020 </p>
+                        <p style="text-align: center;"> This weeks activities: 22/4/2020 to 29/4/2020 </p>
                     </div>
                 </div>
                 <div class="row">
@@ -38,7 +36,8 @@
 
         </div>
         {% if userrole is 1  %}
-        <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-activity-modal"><i class="fa fa-plus"></i>Add Activity</button>
+        <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-activity-modal"><i
+                class="fa fa-plus"></i>Add Activity</button>
         {% include 'add-activity-modal.html' %}
         {% endif %}
         <style>
@@ -55,26 +54,21 @@
         </style>
 
         <div class="row activities my-3">
-            <div class="row">
-                {%for activity in allActivities%}
-                <div class="col-sm-6">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Activity: {{activity.name}}</h5>
-    
-                            <p class=""> {{activity.name}} </p>
-                            <p>From: {{activity.start_time}} </p>
-                            <p>To: {{activity.end_time}} </p>
-                            <button class="btn btn-primary float-right">Enroll My Child</button>
-                        </div>
+
+            {%for activity in allActivities%}
+            <div class="col-sm-6 ">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Activity: {{activity.name}}</h5>
+
+                        <p> {{activity.name}} </p>
+                        <p>From: {{activity.start_time}} </p>
+                        <p>To: {{activity.end_time}} </p>
+                        <button class="btn btn-primary float-right">Enroll My Child</button>
                     </div>
                 </div>
-                {%endfor%}
             </div>
-    
-    
-            
-
+            {%endfor%}
         </div>
 
     </div>

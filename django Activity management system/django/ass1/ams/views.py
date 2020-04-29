@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import User,Role
+from .models import User,Role,Activity
 from django.db import IntegrityError
 
 from ams import forms
+
+
 
 
 def home(request):
@@ -13,9 +15,15 @@ def home(request):
     except:
         userrole = '3'
     af = forms.ActivityForm()
-
-    context = {'userrole':userrole,'includeNav':True,'form':af}
-    
+    if request.method == 'POST':
+        af = forms.ActivityForm(request.POST)
+        if af.is_valid():
+            activity = af.save()
+            messages.add_message(request, messages.SUCCESS,"Activity added successfully")
+        else:
+            messages.add_message(request, messages.INFO,"Activity  Failed")
+    allActivities = Activity.objects.all()
+    context = {'userrole':userrole,'includeNav':True,'form':af,'allActivities': allActivities}
     return render(request,'home.html',context)
 
 

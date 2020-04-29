@@ -128,6 +128,8 @@ AUTH_USER_MODEL = 'ams.User'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 DATE_INPUT_FORMATS = [
-    '%d/%m/%Y','%m/%d/%Y', '%Y-%m-%d', 
+    '%d/%m/%Y','%m/%d/%Y', '%Y-%m-%d',
    
 ]
+
+DATETIME_INPUT_FORMATS = ['%Y-%m-%dT%H:%M' ]
