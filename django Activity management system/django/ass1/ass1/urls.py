@@ -18,5 +18,6 @@ urlpatterns = [
     path('register/', views.register_view, name='register-user'),
     
     path('update/child/', views.updateChild, name = 'update-child'),
+    path('calendar/', views.calendar, name = 'calendar'),
 
 ]
