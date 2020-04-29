@@ -193,14 +193,17 @@ def calendar(request):
             hour = f'{hour}'
         start_time_being_checked = time.fromisoformat(hour+':00:00')
         row = {'time':time_str}
+        count = 1
         for aday in five_week_days:
-            count = 1
             allActivitiesOnThisDay = Activity.objects.filter(date=aday)
             for activity in allActivitiesOnThisDay:
                 if activity.start_time == start_time_being_checked:
                     row[f'a{count}']=activity
             count +=1
         rwd.append(row)
-    
-    context = {'row_wise_data':rwd,'next_five_week_days':five_week_days_strings}
+    dates_for_nav={'start_date':start_date}
+    end_date = start_date+timedelta(days=4)
+    dates_for_nav['end_date'] = end_date
+
+    context = {'row_wise_data':rwd,'next_five_week_days':five_week_days_strings,'includeNav':True,'dates':dates_for_nav}
     return render(request,'calendar.html',context)
