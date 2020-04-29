@@ -20,10 +20,21 @@ class Role(models.Model):
       return self.get_id_display()
 
 
+
+def strfdelta(tdelta, fmt):
+    d = {"days": tdelta.days}
+    d["hours"], rem = divmod(tdelta.seconds, 3600)
+    d["minutes"], d["seconds"] = divmod(rem, 60)
+    return fmt.format(**d)
+
 class Activity(models.Model):
   name = models.CharField(max_length=255)
   start_time = models.DateTimeField()
-  end_time = models.DateTimeField()
+  duration = models.DurationField(default='01:00:00')
+  def dur_str(self):
+    return strfdelta(self.duration, "{hours} Hours and {minutes} Minutes")
+
+
   def __str__(self):
     return self.name
 
