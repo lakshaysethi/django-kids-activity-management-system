@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from .models import User,Role,Activity
+from .models import User,Role,Activity,Child
 from django.db import IntegrityError
 
 from ams import forms
@@ -15,21 +15,37 @@ def home(request):
     except:
         userrole = '3'
     af = forms.ActivityForm()
-    if request.method == 'POST':
-        af = forms.ActivityForm(request.POST)
-        if af.is_valid():
-            activity = af.save()
-            messages.add_message(request, messages.SUCCESS,"Activity added successfully")
-        else:
-            messages.add_message(request, messages.INFO,"Activity  Failed")
     allActivities = Activity.objects.all()
+    if request.method == 'POST':
+        if request.POST.get('childId') is not None:
+            try:
+                childId= request.POST.get('childId')
+                activityId= request.POST.get('activityId')
+                selectedChild = Child.objects.filter(id=childId).first()
+                selectedActivity = Activity.objects.filter(id=activityId).first()
+                selectedChild.enrolled_activities.add(selectedActivity)
+                messages.add_message(request, messages.SUCCESS, f'{selectedChild.name} has been enrolled in {selectedActivity.name}')
+            except:
+                messages.add_message(request, messages.INFO, f'FAILED to enroll child')
+            context = {'userrole':userrole,'includeNav':True,'child':selectedChild,'allActivities': allActivities}
+            response = child_profile(request, context)
+            return response
+            
+        else:
+            af = forms.ActivityForm(request.POST)
+            if af.is_valid():
+                activity = af.save()
+                messages.add_message(request, messages.SUCCESS,"Activity added successfully")
+            else:
+                messages.add_message(request, messages.INFO,"Activity  Failed")
+    
     context = {'userrole':userrole,'includeNav':True,'form':af,'allActivities': allActivities}
     return render(request,'home.html',context)
 
 
 
-def child_profile(request):
-    context ={}
+def child_profile(request,newContext={}):
+    context ={'includeNav':True}
     if request.method == 'POST':
         child = request.user.myChildren.all().filter(id=request.POST.get('childId')).first()
         context = {'includeNav':True,'child':child }
