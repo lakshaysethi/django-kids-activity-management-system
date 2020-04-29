@@ -1,0 +1,52 @@
+{% extends 'base.html'%} {% block content1 %}
+
+<!-- 
+ - Edit the parents details like name, first name, address, phone, email, city, country
+ - Add a child button 
+ - profile Picture
+ - view list of my children section
+ - update child information (adress, contact)
+
+ 
+-->
+<main>
+    {%include 'add-child-modal.html'%}
+
+    <div class="container d-flex flex-column">
+
+        <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i
+            class="fa fa-plus"></i>Add Child</button>
+
+
+
+        <div class="list-group my-children-list">
+            {%for child in myChildren%}
+            <div class="list-group-item list-group-item-action d-flex flex-column align-items-start ">
+
+                <h5 class="mb-1 ">{{child.name}}</h5>
+                <p>Address: {{child.address}}</p>
+                <p>Date of birth: {{child.date_of_birth}}</p>
+                <p>Contact: {{child.contact}}</p>
+                <div class="button-group ml-auto">
+                    <button class="btn btn-secondary " data-toggle="dropdown">Action <i class="fa fa-caret-down"></i>
+                    </button>
+
+                    <!--aria-haspopup="true" aria-expanded="false"-->
+
+                    <div style="background: transparent;border:none;" class="dropdown-menu">
+                        <a name="childId" value="{{child.id}}" class="btn mb-1 btn-secondary" data-toggle="modal" data-target="#update-child-modal-{{child.id}}"><i class="fas fa-edit"></i> Update</a><br> {%include 'update-child-modal.html'%}
+                        <a class="btn btn-danger" data-toggle="modal" data-target="#removeChildModal-{{child.id}}"><i class="fas fa-trash"></i> Remove</a> {%include 'remove-child-modal.html'%}
+                    </div>
+                </div>
+
+
+
+            </div>
+            {%endfor%}
+
+        </div>
+    </div>
+
+
+</main>
+{% endblock%}

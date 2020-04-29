@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="51b848de-3fe0-4d0d-bba6-bb4778509679" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/Assignment_1/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/Assignment_1/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/Assignment_1/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/Assignment_1/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/ams/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Django/ActivityManagementSystem/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/Django/ActivityManagementSystem/templates/home.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1b1GqEmxSqDspxRqIXWl5NAaQip" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="51b848de-3fe0-4d0d-bba6-bb4778509679" name="Default Changelist" comment="" />
+      <created>1587792385302</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1587792385302</updated>
+    </task>
+    <servers />
+  </component>
+</project>

@@ -1,0 +1,48 @@
+{%load crispy_forms_tags %}
+
+
+<div id="update-child-modal-{{child.id}}" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Child</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+            </div>
+            <form method="POST" action="{% url 'update-child'%}">
+
+
+                <div class="modal-body">
+
+                    <div id="div_id_name" class="form-group"> <label for="id_name" class=" requiredField">
+                        Name<span class="asteriskField">*</span> </label>
+                        <div class=""> <input value="{{child.name}}" type="text" name="name" maxlength="50" class="textinput textInput form-control" required="" id="id_name"> </div>
+                    </div>
+                    <div id="div_id_age" class="form-group"> <label for="id_age" class=" requiredField">
+                        Age<span class="asteriskField">*</span> </label>
+                        <div class=""> <input value="{{child.age}}" type="number" name="age" class="numberinput form-control" required="" id="id_age"> </div>
+                    </div>
+                    <div id="div_id_date_of_birth" class="form-group"> <label for="id_date_of_birth" class=" requiredField">
+                        Date of birth<span class="asteriskField">*</span> </label>
+                        <div class=""> <input value="{{child.date_of_birth}}" type="date" name="date_of_birth" class="dateinput form-control" required="" id="id_date_of_birth"> </div>
+                    </div>
+                    <div id="div_id_address" class="form-group"> <label for="id_address" class=" requiredField">
+                        Address<span class="asteriskField">*</span> </label>
+                        <div class=""> <input value="{{child.address}}" type="text" name="address" maxlength="255" class="textinput textInput form-control" required="" id="id_address"> </div>
+                    </div>
+                    <div id="div_id_contact" class="form-group"> <label for="id_contact" class=" requiredField">
+                        Contact<span class="asteriskField">*</span> </label>
+                        <div class=""> <input value="{{child.contact}}" type="text" name="contact" maxlength="15" class="textinput textInput form-control" required="" id="id_contact"> </div>
+                    </div>
+                    <input type="hidden" name="csrfmiddlewaretoken" value="kGJQx3soRaAYjWClAqPMYUrhinrWmVhHUCRH2YXA32ewn7URsjm0PgUkNqHqhphA">
+                </div>
+                <div class="modal-footer">
+                    <button name="childId" value="{{child.id}}" type="submit" class="btn btn-secondary">Update Child</button>
+            </form>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
