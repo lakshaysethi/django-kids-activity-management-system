@@ -1,0 +1,11 @@
+DONE make the enroll my child button work 
+    
+    DONE make sure enroll mychild button only shows up when the user is a parent
+    DONE TEST: if the user is a teacher then she should not see the "enroll my child button"
+
+    DONE when parent clicks the "enroll my child" button then she should see the list of her children and she should be able to select the child that she wants to enrol
+        actually enroll the child programactically in the backend
+            DONE add a form with child id and activity id to the home.html 
+            DONE modify the views.py file and so that it can hendel the post request and enroll the child programactically
+        DONE once the child is enrolled success message should be shown
+        DONE and view-child-profile.html page is shown with the list of activities that the child is enrolled in
