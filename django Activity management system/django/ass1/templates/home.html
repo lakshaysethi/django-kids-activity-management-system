@@ -59,12 +59,32 @@
             <div class="col-sm-6 ">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Activity: {{activity.name}}</h5>
+                        <h5 class="card-title"> {{activity.name}}</h5>
 
                         <p> {{activity.name}} </p>
                         <p>From: {{activity.start_time}} </p>
                         <p>To: {{activity.end_time}} </p>
-                        <button  class="btn btn-primary float-right">Enroll My Child</button>
+                        
+                        <!-- if the user is parent then -->
+                        {% if userrole is 2 %}
+                            {% if user.myChildren.count > 0 %}
+                            <!-- if the user has kids then -->
+                            <button data-toggle="dropdown" class="btn btn-primary float-right">Enroll My Child <i class="fa fa-caret-down"></i></button>
+                            <div style='background:transparent;border:none;' class="dropdown-menu">
+                                {% for child in user.myChildren.all %}
+                                    <form method = "post">
+                                        {%csrf_token%}
+                                        <input name="childId" value="{{child.id}}"  type="hidden">
+                                        <input name="activityId" value="{{activity.id}}"  type="hidden">
+                                        <button type='submit' class="btn mb-1 btn-outline-secondary">{{child.name}}</button >
+                                    </form>
+
+                                {% endfor %}                            
+                            </div>
+                            {% else %}
+                            <button disabled class="btn btn-primary float-right">You do not have any kids in your account</button>
+                            {% endif %}
+                        {% endif %}
                     </div>
                 </div>
             </div>
