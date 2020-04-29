@@ -24,17 +24,21 @@
                 <!-- <button class='ml-auto'>Actions <i class="fa fa-caret-down"></i></button> -->
                 
                 <div class="button-group ml-auto">
-                    <a class="nav-link" href="{% url 'child-profile' %}">view child profile </a>
+                    <form method="post" action="{% url 'child-profile' %}">
+                        {% csrf_token %}
+                        <input name='childId' value='{{ child.id }}' type="hidden">
+                        <button type="submit"  class="btn btn-primary float-right" >View Child Profile </button>
+                    </form>
 
                     <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
                     <div style='background:transparent;border:none;' class="dropdown-menu">
                         
-                            <a class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#update-child-modal-{{ child.id}}"><i class="fas fa-edit"></i> Update</a><br>           
-                            {% include 'update-child-modal.html' %}
-                           
-                            <a  class="btn btn-danger" data-toggle="modal" data-target="#removeChildModal-{{child.id}}"><i class="fas fa-trash"></i> Remove</a>
-                            {% include 'remove-child-modal.html' %}
-                            
+                        <a class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#update-child-modal-{{ child.id}}"><i class="fas fa-edit"></i> Update</a><br>           
+                        {% include 'update-child-modal.html' %}
+                        
+                        <a  class="btn btn-danger" data-toggle="modal" data-target="#removeChildModal-{{child.id}}"><i class="fas fa-trash"></i> Remove</a>
+                        {% include 'remove-child-modal.html' %}
+                        
                             
                         
                     </div>
