@@ -40,27 +40,39 @@
                         <p>Date: {{activity.date}}</p>
                         <p>From: {{activity.start_time}} </p>
                         <p>Duration: {{activity.dur_str}} </p>
-                        
+
                         <!-- if the user is parent then -->
                         {% if userrole is 2 %}
                             {% if user.myChildren.count > 0 %}
                             <!-- if the user has kids then -->
-                            <button data-toggle="dropdown" class="btn btn-primary float-right">Enroll My Child <i class="fa fa-caret-down"></i></button>
+                            <button data-toggle="dropdown" class="btn btn-primary float-right">Enroll My Child <i
+                                    class="fa fa-caret-down"></i></button>
                             <div style='background:transparent;border:none;' class="dropdown-menu">
                                 {% for child in user.myChildren.all %}
-                                    <form method = "post">
-                                        {%csrf_token%}
-                                        <input name="childId" value="{{child.id}}"  type="hidden">
-                                        <input name="activityId" value="{{activity.id}}"  type="hidden">
-                                        <button type='submit' class="btn mb-1 btn-outline-secondary">{{child.name}}</button >
-                                    </form>
+                                <form method="post">
+                                    {%csrf_token%}
+                                    <input name="childId" value="{{child.id}}" type="hidden">
+                                    <input name="activityId" value="{{activity.id}}" type="hidden">
+                                    <button type='submit' class="btn mb-1 btn-outline-secondary">{{child.name}}</button>
+                                </form>
 
-                                {% endfor %}                            
+                                {% endfor %}
                             </div>
                             {% else %}
-                            <button disabled class="btn btn-primary float-right">You do not have any kids in your account</button>
+                            <button disabled class="btn btn-primary float-right">You do not have any kids in youraccount</button>
                             {% endif %}
                         {% endif %}
+                        <div class="button-group">
+                            <button data-toggle="dropdown" class="float-right btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
+                            <div style='background:transparent;border:none;' class="dropdown-menu">
+                                <a class="btn mb-1 btn-outline-secondary" data-toggle="modal"data-target="#update-activity-modal-{{ activity.id}}"><i class="fas fa-edit"></i>Update</a><br>
+                                {% include 'update-activity-modal.html' %}
+                                <a class="btn btn-danger" data-toggle="modal"data-target="#removeActivityModal-{{activity.id}}"><i class="fas fa-trash"></i> Remove</a>
+                                {% include 'remove-activity-modal.html' %}
+                            </div>
+                            
+                        </div>
+                        
                     </div>
                 </div>
             </div>
