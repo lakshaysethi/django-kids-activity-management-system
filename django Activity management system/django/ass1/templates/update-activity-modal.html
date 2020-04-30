@@ -12,6 +12,9 @@
             </div>
             <form method="POST" action="">
                 {% csrf_token %}
+                <input type="hidden" name="form-type" value="update-activity" id="">
+                <input type="hidden" name="activityId" value="{{activity.id}}" id="">
+
                 <div class="modal-body">
                     <div id="div_id_name" class="form-group"> <label for="id_name" class=" requiredField">
                         Name<span class="asteriskField">*</span> </label>
