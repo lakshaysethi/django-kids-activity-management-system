@@ -18,6 +18,20 @@ def home(request):
     af = forms.ActivityForm()
     allActivities = Activity.objects.all()
     if request.method == 'POST':
+        if request.POST.get('form-type') == 'update-activity' and request.POST.get('form-type') is not None:
+            activityId = request.POST.get('activityId')
+            a1 = Activity.objects.filter(id=activityId).first()
+            a1name = a1.name
+            af = forms.ActivityForm(request.POST, instance=a1)
+            if  af.is_valid():       
+                a2 = af.save()
+                messages.add_message(request,messages.SUCCESS, f'{a1name}\'s details have been Updated Successfully to {a2.name}!')
+                return redirect('home')
+            else:
+                af = forms.ActivityForm()
+                messages.add_message(request,messages.INFO, 'Failed to update activity details.')
+
+
         if request.POST.get('childId') is not None:
             try:
                 childId= request.POST.get('childId')

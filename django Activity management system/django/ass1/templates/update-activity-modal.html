@@ -12,6 +12,9 @@
             </div>
             <form method="POST" action="">
                 {% csrf_token %}
+                <input name='form-type' value='update-activity' type="hidden">
+                <input name='activityId' value='{{ activity.id }}' type="hidden">
+
                 <div class="modal-body">
 
                     <div id="div_id_name" class="form-group"> <label for="id_name" class=" requiredField">
