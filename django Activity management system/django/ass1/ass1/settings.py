@@ -25,7 +25,7 @@ SECRET_KEY = 'bif_mwwy0$(1j@&2g@c7u6kgqp=ks+_%09i!2_0&%if+$9b4wg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.1.7','0.0.0.0']
+ALLOWED_HOSTS = ['192.168.1.7','0.0.0.0','127.0.0.1']
 
 
 # Application definition
