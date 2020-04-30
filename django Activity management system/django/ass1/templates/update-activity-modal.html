@@ -1,0 +1,50 @@
+{% load crispy_forms_tags %}
+
+
+<div id="update-activity-modal-{{ activity.id}}" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Update Activity</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="POST" action="">
+                {% csrf_token %}
+                <div class="modal-body">
+
+                    <div id="div_id_name" class="form-group"> <label for="id_name" class=" requiredField">
+                            Name<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="name" value="{{activity.name}}" maxlength="255"
+                                class="textinput textInput form-control form-control" required="" id="id_name"> </div>
+                    </div>
+                    <div id="div_id_date" class="form-group"> <label for="id_date" class=" requiredField">
+                            Date<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="date" name="date" value="{{activity.date|date:'Y-m-d' }}" class="dateinput form-control form-control"
+                                required="" id="id_date"> </div>
+                    </div>
+                    <div id="div_id_start_time" class="form-group"> <label for="id_start_time" class=" requiredField">
+                            Start time<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="start_time" value="{{activity.start_time|time:'H:i'  }}"
+                                class="timeinput form-control form-control" required="" id="id_start_time"> </div>
+                    </div>
+                    <div id="div_id_duration" class="form-group"> <label for="id_duration" class=" requiredField">
+                            Duration<span class="asteriskField">*</span> </label>
+                        <div class=""> <input type="text" name="duration" value="{{activity.duration}}"
+                                class="textinput textInput form-control form-control" required="" id="id_duration">
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Update Activity</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
