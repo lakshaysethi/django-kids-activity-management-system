@@ -52,8 +52,7 @@
                             </div>
                             {% else %}
                             <button disabled class="btn btn-primary float-right">You do not have any kids in your account</button> {% endif %} {% endif %}
-                                <div class="button-group ml-auto"></div>
-                                <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
+                                <button data-toggle="dropdown" class="btn btn-secondary float-right">Actions <i class="fa fa-caret-down"></i></button>
                                 <div style='background:transparent;border:none;' class="dropdown-menu">
 
                                     <a class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#update-activity-modal-{{ activity.id}}"><i class="fas fa-edit"></i> Update</a><br> {% include 'update-activity-modal.html' %}
