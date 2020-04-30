@@ -62,6 +62,8 @@
                             <button disabled class="btn btn-primary float-right">You do not have any kids in youraccount</button>
                             {% endif %}
                         {% endif %}
+                        <!-- if user is teacher -->
+                        {% if userrole is 1 %}
                         <div class="button-group">
                             <button data-toggle="dropdown" class="float-right btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
                             <div style='background:transparent;border:none;' class="dropdown-menu">
@@ -72,7 +74,7 @@
                             </div>
                             
                         </div>
-                        
+                        {% endif %}
                     </div>
                 </div>
             </div>
