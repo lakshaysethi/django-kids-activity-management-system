@@ -38,6 +38,9 @@ class Activity(models.Model):
 
   def __str__(self):
     return self.name
+  
+  def get_week(self):
+    return self.date.isocalendar()[1]
 
 
 class Child(models.Model):
