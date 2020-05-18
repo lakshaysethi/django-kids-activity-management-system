@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'ams.apps.AmsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'django_werkzeug',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
