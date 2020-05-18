@@ -7,7 +7,21 @@ from datetime import datetime,timedelta
 from datetime import time
 from ams import forms
 from django.utils import timezone
+from django.http import JsonResponse
 
+
+def supervise(request):
+    if request.method == 'POST':
+        try:
+            activityId = request.POST.get('activityId')
+            selectedActivity = Activity.objects.filter(id=activityId).first()
+            request.user.myActivities.add(selectedActivity)
+            messages.add_message(request,messages.SUCCESS, f'You are now a supervisor for {selectedActivity}')
+        except ValueError:
+            console.log('failed')
+            messages.add_message(request,messages.INFO, f'Failed to supervise')
+            return redirect('home')
+    return redirect('my-profile')
 
 
 

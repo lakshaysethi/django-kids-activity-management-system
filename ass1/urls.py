@@ -19,5 +19,6 @@ urlpatterns = [
     
     path('update/child/', views.updateChild, name = 'update-child'),
     path('calendar/', views.calendar, name = 'calendar'),
+    path('supervise/', views.supervise, name = 'supervise'),
 
 ]
