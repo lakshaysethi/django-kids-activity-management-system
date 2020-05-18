@@ -58,7 +58,7 @@ class Child(models.Model):
 class User(AbstractUser):
   roles = models.ManyToManyField(Role)
   myChildren = models.ManyToManyField(Child,blank=True)
-
+  myActivities = models.ManyToManyField(Activity,blank=True)
   def __str__(self):
     return self.username
 
