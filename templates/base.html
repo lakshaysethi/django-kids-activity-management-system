@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+    integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+    crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+    crossorigin="anonymous"></script>
+
+    
+    <title> title change me </title>
+</head>
+ <style>
+
+ /*
+ 
+html,body{
+background: url('https://cdn.dribbble.com/users/247458/screenshots/2503828/pattern.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+}
+ 
+   */
+</style> 
+<body>
+
+
+
+
+{% if includeNav %}
+{% include 'nav.html' %}
+{% endif %}
+
+
+
+{% if messages %}
+    <div class="messages mt-1">
+        {% for message in messages %}
+            <div 
+            {% if message.tags %} 
+            class="alert alert-{{ message.tags }}"
+            {% endif %}
+            >
+            <strong>{{ message.tags }}!</strong> {{ message }}
+        
+        </div>
+        {% endfor %}
+    </div>
+{% endif %}
+
+
+{% block content1 %}
+
+
+{% endblock %}
+
+   
+ <script>
+
+$( document ).ready(function(){
+
+    $('.modal').appendTo($('main'))
+    set18YearsDOB()
+    function set18YearsDOB(){
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth() + 1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if (dd < 10) {
+        dd = '0' + dd
+        }
+
+        if (mm < 10) {
+        mm = '0' + mm
+        }
+
+
+        var eighteenYearsBack  = new Date()
+        eighteenYearsBack.setYear(today.getFullYear()-18 )
+
+        today = yyyy + '-' + mm + '-' + dd;// today is 
+
+
+
+        var dd2 = eighteenYearsBack.getDate();
+        var mm2 = eighteenYearsBack.getMonth() + 1; //January is 0!
+        var yyyy2 = eighteenYearsBack.getFullYear();
+
+        if (dd2 < 10) {
+        dd2 = '0' + dd2
+        }
+
+        if (mm2 < 10) {
+        mm2 = '0' + mm2
+        }
+
+        eighteenYearsBack = yyyy2 + '-' + mm2 + '-' + dd2;
+        console.log(eighteenYearsBack)
+
+        $('.dateinput').each((index,dateinput)=>{
+            
+            if($(dateinput).attr('name')=='date_of_birth'){
+                $(dateinput).attr("max", today);
+                $(dateinput).attr("min", eighteenYearsBack);
+            }
+        })
+            
+
+
+    }
+
+    confirmpassword();
+    function confirmpassword(){
+        $('#password_1, #password_2').on('keyup', function () {
+            if ($('#password_1').val() == $('#password_2').val()) {
+                $('#message').html('Matching').css('color', 'green');
+                $("#signupBtn").prop('disabled',false)
+            } else {
+                $('#message').html('Not Matching').css('color', 'red');
+                $("#signupBtn").prop("disabled", true);
+            }
+        });
+    }
+
+})
+
+ </script>
+    
+</body>
+
+</html>

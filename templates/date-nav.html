@@ -1,0 +1,37 @@
+<div class="row mt-5 mb-1 week-nav">
+    <div class="col">
+        <div class="row">
+            <div class="col">
+                <p style="text-align: center;"> This weeks activities: {{current_week}}  </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                
+               
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="week" value="last-week">
+                    <input type="hidden" name="current_week" value="{{current_week}}">
+                    <button class="btn btn-outline-secondary float-left" type="submit">last week</button>
+                </form>
+
+            </div>
+
+            <div class="col">
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="week" value="next-week">
+                    <input type="hidden" name="current_week" value="{{current_week}}">
+                    <button class="btn btn-outline-secondary float-right" type="submit">next week</button>
+                </form>
+            
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+</div>
