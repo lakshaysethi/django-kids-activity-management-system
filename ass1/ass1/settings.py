@@ -106,15 +106,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-# LANGUAGE_CODE = 'en-nz'
+LANGUAGE_CODE = 'en-nz'
 
-# TIME_ZONE = 'Pacific/Auckland'
+TIME_ZONE = 'Pacific/Auckland'
 
-# USE_I18N = True
+USE_I18N = True
 
-# USE_L10N = True
+USE_L10N = True
 
-# USE_TZ = True
+USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
@@ -134,3 +134,8 @@ DATE_INPUT_FORMATS = [
 ]
 
 DATETIME_INPUT_FORMATS = ['%Y-%m-%dT%H:%M' ]
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '/var/www/static/',
+]
