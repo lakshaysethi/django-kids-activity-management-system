@@ -3,63 +3,25 @@
 {% block content1 %}
 
 <main>
-    {% include 'add-child-modal.html' %}
-    
-    
-    <div class="container d-flex flex-column">
-
-        <h1>My details</h1>
-        <p>I am a {{user.roles.first}} and my name is {{user.username}}</p>
-        
-        {% if userrole is 2 %}
-        <h1>MY CHILDREN</h1>
-        <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i class="fa fa-plus"></i>Add Child</button>
-        <div class="list-group my-children-list">
-            {% for child in myChildren %}
-            <div class="list-group-item list-group-item-action d-flex flex-column align-items-start">
-                <h5 class="mb-1">{{child.name}}</h5>
-                <p>Address: {{child.address}}</p>
-                <p>Date of birth: {{child.date_of_birth}}</p>
-                <p>Contact: {{child.contact}}</p>
-                <!-- <button class='ml-auto'>Actions <i class="fa fa-caret-down"></i></button> -->
-                
-                <div class="button-group ml-auto">
-                    <form method="post" action="{% url 'child-profile' %}">
-                        {% csrf_token %}
-                        <input name='childId' value='{{ child.id }}' type="hidden">
-                        <button type="submit"  class="btn btn-primary float-right" >View Child Profile </button>
-                    </form>
-
-                    <button data-toggle="dropdown" class="btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
-                    <div style='background:transparent;border:none;' class="dropdown-menu">
-                        
-                        <a class="btn mb-1 btn-outline-secondary" data-toggle="modal" data-target="#update-child-modal-{{ child.id}}"><i class="fas fa-edit"></i> Update</a><br>           
-                        {% include 'update-child-modal.html' %}
-                        
-                        <a  class="btn btn-danger" data-toggle="modal" data-target="#removeChildModal-{{child.id}}"><i class="fas fa-trash"></i> Remove</a>
-                        {% include 'remove-child-modal.html' %}
-                        
-                            
-                        
-                    </div>
-                </div>
-
+        <!-- <h1>My details</h1><p>I am a {{user.roles.first}} and my name is {{user.username}}</p> -->
+    <div class="container mt-5">
+        <div class="row">
+            {% include 'profile-section.html' %}
+            <div class="col-8 userLists" >
+                {% if userrole is 2 %}
+                    <h1>MY CHILDREN</h1>
+                    <button class="btn my-4 ml-auto btn-secondary" data-toggle="modal" data-target="#add-child-modal"><i class="fa fa-plus"></i>Add Child</button>
+                    {% include 'childrenlist.html' %}
+                {%else%}
+                    <h1>My Activities</h1>
+                    {% include 'date-nav.html' %}
+                    {%include 'activities.html'%}
+                {% endif %}
             </div>
-            {%endfor%}
-
         </div>
-        {% endif %}
-
     </div>
 
 
-
-
-
-
-
-
-
 </main>
-
+{% include 'add-child-modal.html' %}
 {% endblock %}
