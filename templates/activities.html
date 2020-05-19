@@ -106,7 +106,7 @@
                 
                 <div class="button-group">
                     
-                    <button onclick="makeUserSupervisor({{activity.id}},$(this))" class="superviseBtn btn btn-outline-secondary">{% for myActivity in user.myActivities.all %}{% if myActivity.id == activity.id %}you are a supervisor for this now{% endif %}{%endfor%}</button>
+                <button onclick="makeUserSupervisor({{activity.id}},$(this))" class="superviseBtn btn btn-outline-secondary">{% for myActivity in user.myActivities.all %}{% if myActivity.id == activity.id %}you supervise this{% endif %}{%endfor%}</button>
 
                     <button data-toggle="dropdown" class="float-right btn btn-secondary">Actions <i class="fa fa-caret-down"></i></button>
                     <div style='background:transparent;border:none;' class="dropdown-menu">

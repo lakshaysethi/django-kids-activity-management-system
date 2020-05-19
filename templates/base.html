@@ -64,7 +64,7 @@ background-repeat: no-repeat;
  <script>
 
     function makeUserSupervisor(aid,button){
-        $.post('{% url "supervise" %}',{ 'activityId':aid, 'csrfmiddlewaretoken': document.getElementsByName('csrfmiddlewaretoken')[0].value},(data)=>{button.html('you are a supervisor for this now');console.log('success')})
+        $.post('{% url "supervise" %}',{ 'activityId':aid, 'csrfmiddlewaretoken': document.getElementsByName('csrfmiddlewaretoken')[0].value},(data)=>{button.html('you supervie this');console.log('success')})
     }
 
 	$( document ).ready(function(){
