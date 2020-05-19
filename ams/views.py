@@ -51,7 +51,11 @@ def home(request):
     context = dict()
 
     current_activities =[]
-    
+    if request.method == 'GET'
+		for activity in allActivities:
+			if str(activity.get_week()) == str(int(current_week)+1):
+				current_activities.append(activity)
+		
     try:
         print('in the all activities the first activity is in the week of'+ str(allActivities.first().get_week()))
     except:
@@ -112,10 +116,6 @@ def home(request):
             else:
                 messages.add_message(request, messages.INFO,"Activity  Failed")
     
-    current_activities = []
-    for activity in allActivities:
-        if str(activity.get_week()) == str(int(current_week)+1):
-            current_activities.append(activity)
             #print(activity,activity.get_week())
     print('current activities are :'  )
     print(current_activities)
