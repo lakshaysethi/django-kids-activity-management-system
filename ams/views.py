@@ -162,6 +162,15 @@ def my_profile(request):
         else:
             messages.add_message(request, messages.INFO, "Child Add Failed")
     myChildren = request.user.myChildren.all()
+    if request.method == 'POST' and request.POST.get('week') is not None:
+        cwfpr = request.POST.get('current_week')
+        # current week from post request = cwfpr
+        current_week2 = current_week_setter(str(cwfpr),request)
+        for activity in request.user.myActivities.all():
+            if str(activity.get_week()) == str(int(current_week2)+1):
+                myCurrentWeeksActivities =[]
+                print('matched!! loll')
+                myCurrentWeeksActivities.append(activity)  
     context= {'userrole':userrole,'includeNav': True, 'myChildren': myChildren,'form':cf}
     return render(request, 'my-profile.html',context)
 
