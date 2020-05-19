@@ -9,6 +9,19 @@ from ams import forms
 from django.utils import timezone
 from django.http import JsonResponse
 
+current_week = timezone.now().isocalendar()[1] -1
+
+def current_week_setter(current_week,request):
+    if request.method == 'POST'  and request.POST.get('week') is not None:
+            week = request.POST.get('week')
+            current_week = request.POST['current_week']
+            print('beforer the week was '+current_week)
+
+            if week == 'next-week':
+                current_week = str(int(current_week) +1)
+            if week == 'last-week':
+                current_week = str(int(current_week) -1)
+
 
 def supervise(request):
     if request.method == 'POST':
@@ -46,16 +59,8 @@ def home(request):
     
     
     if request.method == 'POST':
-        if request.method == 'POST'  and request.POST.get('week') is not None:
-            week = request.POST.get('week')
-            current_week = request.POST['current_week']
-            print('beforer the week was '+current_week)
-
-            if week == 'next-week':
-                current_week = str(int(current_week) +1)
-            if week == 'last-week':
-                current_week = str(int(current_week) -1)
         
+        current_week_setter(current_week,request)
         
             
 
