@@ -22,10 +22,10 @@
     
     {%elif request.path == '/myprofile/' %} 
     
-    {%for activity in    user.myActivities.all  %}
+    {%for activity in    myCurrentWeeksActivities  %}
         {%include 'activities.html'%}
+
     {%endfor%}
-   
    
     {% endif %}
     
