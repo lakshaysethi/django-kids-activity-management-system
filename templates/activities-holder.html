@@ -1,0 +1,34 @@
+<style>
+    .activity {
+        background-color: #e8e8e8;
+
+        border: 1px solid black;
+    }
+
+    .activity button {
+        padding: 0 5px 0 5px;
+        margin-bottom: 10px;
+    }
+</style>
+
+<div class="row activities my-3">
+    
+    {% if request.path == '/' %}
+    
+    {%for activity in    allActivities  %}
+        {%include 'activities.html'%}
+    {%endfor%}
+    
+    
+    {%elif request.path == '/myprofile/' %} 
+    
+    {%for activity in    user.myActivities.all  %}
+        {%include 'activities.html'%}
+    {%endfor%}
+   
+   
+    {% endif %}
+    
+    
+</div>
+
