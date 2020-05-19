@@ -60,11 +60,11 @@ def home(request):
     
     
     if request.method == 'POST':
-        
-        current_week_setter(current_week,request)
-        
-            
-
+        if request.method == 'POST' and request.POST.get('week') is not None:
+            current_week2 =current_week_setter(current_week,request)
+            for activity in allActivities:
+                if str(activity.get_week()) == str(int(current_week2)+1):
+                    current_activities.append(activity)
         if request.POST.get('form-type') == 'remove-activity' and request.POST.get('form-type') is not None:
             activityId = request.POST.get('activityId')
             
