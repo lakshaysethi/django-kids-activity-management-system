@@ -40,7 +40,7 @@ def supervise(request):
 
 
 def home(request):
-    
+    current_week2 = current_week
     try:
         userrole = request.user.roles.first().id
     except:
@@ -123,7 +123,7 @@ def home(request):
 
     context = {'userrole':userrole,'includeNav':True,'form':af}
     context['allActivities'] = current_activities
-    context['current_week'] = current_week
+    context['current_week'] = current_week2
 
     return render(request,'home.html',context)
 
