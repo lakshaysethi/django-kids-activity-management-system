@@ -37,7 +37,7 @@ def home(request):
     context = dict()
 
     current_activities =[]
-    current_week = timezone.now().isocalendar()[1]
+    current_week = timezone.now().isocalendar()[1] -1
     try:
         print('in the all activities the first activity is in the week of'+ str(allActivities.first().get_week()))
     except:
