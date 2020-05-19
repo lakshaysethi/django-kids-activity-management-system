@@ -21,6 +21,7 @@ def current_week_setter(current_week,request):
                 current_week = str(int(current_week) +1)
             if week == 'last-week':
                 current_week = str(int(current_week) -1)
+    return current_week
 
 
 def supervise(request):
