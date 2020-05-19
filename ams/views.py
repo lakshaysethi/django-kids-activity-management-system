@@ -51,10 +51,10 @@ def home(request):
     context = dict()
 
     current_activities =[]
-    if request.method == 'GET'
-		for activity in allActivities:
-			if str(activity.get_week()) == str(int(current_week)+1):
-				current_activities.append(activity)
+    if request.method == 'GET':
+        for activity in allActivities:
+            if str(activity.get_week()) == str(int(current_week)+1):
+                current_activities.append(activity)
 		
     try:
         print('in the all activities the first activity is in the week of'+ str(allActivities.first().get_week()))
