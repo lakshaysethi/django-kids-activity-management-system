@@ -172,6 +172,8 @@ def my_profile(request):
                 print('matched!! loll')
                 myCurrentWeeksActivities.append(activity)  
     context= {'userrole':userrole,'includeNav': True, 'myChildren': myChildren,'form':cf}
+    context['myCurrentWeeksActivities'] = myCurrentWeeksActivities
+    context['current_week'] = current_week2
     return render(request, 'my-profile.html',context)
 
 
