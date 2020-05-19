@@ -143,6 +143,15 @@ def my_profile(request):
         userrole = request.user.roles.first().id
     except:
         userrole = '3'
+    current_week2 = current_week 
+    myCurrentWeeksActivities=[]
+    if request.method == 'GET':
+        for activity in request.user.myActivities.all():
+            if str(activity.get_week()) == str(int(current_week)+1):
+                print(f'matched!! for {activity} loll')
+                myCurrentWeeksActivities.append(activity)
+   
+    
     cf = forms.ChildForm()
     if request.method == 'POST':
         cf = forms.ChildForm(request.POST)
