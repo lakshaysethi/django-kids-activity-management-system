@@ -119,7 +119,8 @@ def home(request):
             #print(activity,activity.get_week())
     print('current activities are :'  )
     print(current_activities)
-    print('now the week is '+str(current_week))
+    if current_week2 is not None:
+        print('now the week is '+str(current_week2))
 
     context = {'userrole':userrole,'includeNav':True,'form':af}
     context['allActivities'] = current_activities
