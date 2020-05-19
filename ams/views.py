@@ -153,7 +153,7 @@ def my_profile(request):
    
     
     cf = forms.ChildForm()
-    if request.method == 'POST':
+    if request.method == 'POST' and request.POST.get('date_of_birth')is not None:
         cf = forms.ChildForm(request.POST)
         if cf.is_valid():
             child = cf.save()
