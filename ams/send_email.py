@@ -4,15 +4,21 @@ import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
-message = Mail(
-    from_email='me@lakshaysethi.com',
-    to_emails=['alex040892@gmail.com'],
-    subject='Test from python backend',
-    html_content='TEST')
+
+
+def sendEmailWithSendGrid(customMessage):
+        
+        
+    message = Mail(
+        from_email='lakshaynew@gmail.com',
+        to_emails=customMessage.to_emails,
+        subject=customMessage.subject,
+        plain_text_content= customMessage.plain_text_content,
+        html_content=customMessage.html_content)
+
 
     
-
-def sendEmailWithSendGrid(message):
+    
     try:
         sg = SendGridAPIClient(os.environ.get('SENDGRID_API_KEY'))
         response = sg.send(message)
