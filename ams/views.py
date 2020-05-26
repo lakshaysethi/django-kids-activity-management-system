@@ -9,6 +9,10 @@ from ams import forms
 from django.utils import timezone
 from django.http import JsonResponse
 
+from .send_email import sendEmailWithSendGrid
+
+
+
 current_week = timezone.now().isocalendar()[1] -1
 
 def current_week_setter(current_week,request):
@@ -230,6 +234,7 @@ def register_view(request):
             email = request.POST.get("email")
             userType = request.POST.get("userType")
             user = User.objects.create_user(username, email, password)
+            sendWelcomeEmail(user)
             if user is not None:
                #messages.add_message(request, level, message, extra_tags='', fail_silently=False)
                 user.roles.add(Role.objects.get(id=userType))
@@ -242,7 +247,14 @@ def register_view(request):
         messages.add_message(request, messages.INFO, "Please Enter your details")
     return render(request,'register.html',{'includeNav':False})
 
-
+def sendWelcomeEmail(user):
+    customMessage = {'to_emails':user.email,
+                    'subject':'Welcome to Activity Management System',
+                    'plain_text_content' : f'Welcome {user.username}',
+                    'html_content': f'<h1>Welcome! {user.username}</h1><p>Thanks for joining</p>'}
+    
+    sendEmailWithSendGrid(customMessage)
+    print("WELCOME EMAIL SENT")
 
 def updateChild(request):
     if (not request.user.is_authenticated):
