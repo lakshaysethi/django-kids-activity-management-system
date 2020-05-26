@@ -6,7 +6,9 @@ django-extensions==2.2.9
 django-werkzeug==1.0.0
 gunicorn==20.0.4
 psycopg2-binary==2.8.5
+python-http-client==3.2.7
 pytz==2020.1
+sendgrid==6.3.1
 six==1.14.0
 sqlparse==0.3.1
 Werkzeug==1.0.1
