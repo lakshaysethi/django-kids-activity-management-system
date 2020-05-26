@@ -166,4 +166,4 @@ EMAIL_USE_TLS = True
 
 
 
-
+DEFAULT_FROM_EMAIL = 'lakshaynew@gmail.com'
