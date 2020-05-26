@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load crispy_forms_filters %}
+
+{% load static %}
+
+{% block content1 %}
+
+<link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/Login-Form-Clean.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/styles.css' %}">
+
+<main>
+    <div class="login-clean">
+        <form method="post">
+            {% csrf_token %}
+            <h2 >Forgot Login Detials</h2>
+
+            <div class="illustration"><img src="{% static 'assets/img/logo.png' %}"></div>
+            <h5>Trouble Logging In?</h5>
+            <h6>Enter your email and we'll send you a link to get back into your account.</h6>
+
+
+            {{form|crispy}}
+
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" type="submit">Send Login Link</button>
+            </div>
+            <a href="{% url 'login' %}" class="forgot">Back to Login</a><br>
+             <a href="{% url 'register-user' %}" class="forgot">Need an account?</a>
+        </form>
+
+    </div>
+</main>
+{% endblock %}
