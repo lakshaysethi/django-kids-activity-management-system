@@ -10,7 +10,7 @@ from django.utils import timezone
 from django.http import JsonResponse
 
 from .send_email import sendEmailWithSendGrid
-
+from .distanceAPI import distanceBetween
 
 
 current_week = timezone.now().isocalendar()[1] -1
@@ -332,4 +332,12 @@ def calendar(request):
 
 
 
-
+def distance(request):
+    ctx ={}
+    if request.method == 'POST' and request.POST.get('origin') is not None:
+        origin = request.POST.get('origin')
+        distance_string = distanceBetween(origin, 'mt albert primary school')
+        ctx['distance_string'] =  distance_string
+    
+    myJSON = JsonResponse(ctx)
+    return myJSON
