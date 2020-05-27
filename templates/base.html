@@ -64,7 +64,18 @@ background-repeat: no-repeat;
 
     function makeUserSupervisor(aid,button){
         $.post('{% url "supervise" %}',{ 'activityId':aid, 'csrfmiddlewaretoken': document.getElementsByName('csrfmiddlewaretoken')[0].value},(data)=>{button.html('you supervie this');console.log('success')})
-    }
+	}
+	
+
+
+
+	function calcDistance(origin){
+		$.post('{% url "distance" %}',{ 'origin':origin, 'csrfmiddlewaretoken': document.getElementsByName('csrfmiddlewaretoken')[0].value},
+				(data)=>{  $('#drivingTimeText').html(data.distance_string) ;
+				
+				console.log('success ',data)})
+	
+	}
 
 	$( document ).ready(function(){
 		
