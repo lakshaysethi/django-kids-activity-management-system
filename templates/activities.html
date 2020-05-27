@@ -8,10 +8,13 @@
 
             <!-- if the user is parent then -->
             {% if userrole is 2 %}
+
+            <input id='originInput' name="origin" type="text"/>
+            <button onclick='calcDistance($("#originInput").val())' data-toggle="modal" data-target="#driving-time-modal" class="btn btn-secondary float-left">View Driving Time </button>    
                 {% if user.myChildren.count > 0 %}
                 <!-- if the user has kids then -->
-                <button data-toggle="dropdown" class="btn btn-primary float-right">Enroll My Child <i
-                        class="fa fa-caret-down"></i></button>
+
+                <button data-toggle="dropdown" class="btn btn-primary float-right">Enroll My Child <i class="fa fa-caret-down"></i></button>
                 <div style='background:transparent;border:none;' class="dropdown-menu">
                     {% for child in user.myChildren.all %}
                     <form method="post">
@@ -48,7 +51,7 @@
     </div>
 </div>
 
-
+{% include 'drivingTimeModal.html'%}
 <!-- 
 
 col-sm for larger mobile phones (devices with resolutions ≥ 576px);
