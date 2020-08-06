@@ -1,3 +1,3 @@
 # django-kids-activity-management-system
 
-hosted at https://django-kids-activity.herokuapp.com/
+hosted at https://activity-staging-app.herokuapp.com/
