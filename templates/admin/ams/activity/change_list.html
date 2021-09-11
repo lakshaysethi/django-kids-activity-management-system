@@ -2,9 +2,15 @@
 {% extends "admin/change_list.html" %}
 {% load i18n admin_urls static admin_list %}
 
-{% block object-tools-items %}
-            {% change_list_object_tools %}
+{% block result_list %}
+          {% if action_form and actions_on_top and cl.show_admin_actions %}{% admin_actions %}{% endif %}
+          {% result_list cl %}
+          {% if action_form and actions_on_bottom and cl.show_admin_actions %}{% admin_actions %}{% endif %}
 
-<H1>hi</H1>
+<form><input type="text"> 
 
+<input type="text"> 
+
+<input value='add activity' type="submit"> 
+</form>
 {% endblock %}
