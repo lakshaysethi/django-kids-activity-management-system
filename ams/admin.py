@@ -11,6 +11,6 @@ admin.site.register(Child)
 
 
 class ActivityAdmin(admin.ModelAdmin):
-    fields = ['name', 'start_time']
+    list_display = ['name', 'start_time']
 
 admin.site.register(Activity, ActivityAdmin)
