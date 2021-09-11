@@ -7,4 +7,10 @@ from .models import Role,User,Child,Activity
 admin.site.register(Role)
 admin.site.register(User)
 admin.site.register(Child)
-admin.site.register(Activity)
+
+
+
+class ActivityAdmin(admin.ModelAdmin):
+    fields = ['name', 'start_time']
+
+admin.site.register(Activity, ActivityAdmin)
